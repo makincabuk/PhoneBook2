@@ -7,8 +7,8 @@ namespace PhoneBook2.Models.Entities
 {
     public class Eposta
     {
-        public string UUID { get; set; }
         public int Id { get; set; }
-        public string eposta { get; set; }
+        public string UUID { get; set; }
+        public string posta { get; set; }
     }
 }
