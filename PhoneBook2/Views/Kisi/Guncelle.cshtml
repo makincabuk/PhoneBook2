@@ -1,4 +1,4 @@
-﻿@model PhoneBook2.Models.Entities.Kisi
+﻿@model PhoneBook2.Models.KisiModel.KisiGuncelleViewModel
 @{
     ViewBag.Title = "Guncelle";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,21 +7,22 @@
 <h2>Guncelle</h2>
 
 
-<form class="form-horizontal" action="/Kisi/Ekle" method="post">
+@using (Html.BeginForm("Guncelle", "Kisi", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(x => x.Kisi.Id)
 <div class="form-group">
-    @Html.LabelFor(x => x.Ad)
-    @Html.TextBoxFor(x => x.Ad, null, new { @class = "form-control" })
+    @Html.LabelFor(x => x.Kisi.Ad)
+    @Html.TextBoxFor(x => x.Kisi.Ad, null, new { @class = "form-control" })
 </div>
 <div class="form-group">
-    @Html.LabelFor(x => x.Soyad)
-    @Html.TextBoxFor(x => x.Soyad, null, new { @class = "form-control" })
+    @Html.LabelFor(x => x.Kisi.Soyad)
+    @Html.TextBoxFor(x => x.Kisi.Soyad, null, new { @class = "form-control" })
 </div>
 <div class="form-group">
-    @Html.LabelFor(x => x.Firma)
-    @Html.TextBoxFor(x => x.Firma, null, new { @class = "form-control" })
+    @Html.LabelFor(x => x.Kisi.Firma)
+    @Html.TextBoxFor(x => x.Kisi.Firma, null, new { @class = "form-control" })
 </div>
-<input type="submit" class="btn btn-primary" value="Guncelle" />
-
-</form>
+<input type="submit" class="btn btn-primary" value="Güncelle" />
+}
 
 

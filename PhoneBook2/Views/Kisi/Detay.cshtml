@@ -1,0 +1,13 @@
+﻿@model PhoneBook2.Models.KisiModel.KisiDetayViewModel
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Kisi.Ad @Model.Kisi.Soyad Bilgileri</h2>
+<hr/>
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayFor(x=>x.Kisi.Firma)</dt>
+    <dd>@Model.Kisi.Firma</dd>
+
+</dl>

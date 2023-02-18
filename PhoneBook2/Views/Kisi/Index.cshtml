@@ -11,7 +11,6 @@
     <tr>
         <th>Ad</th>
         <th>Soyad</th>
-        <th>Firma</th>
         <th>İşlemler</th>
     </tr>
         @foreach (var kisi in Model)
@@ -19,8 +18,9 @@
             <tr>
                 <td>@kisi.Ad</td>
                 <td>@kisi.Soyad</td>
-                <td>@kisi.Firma</td>
-                <td><a href="/Kisi/Guncelle/@kisi.Id">Güncelle</a></td>
+                <td>@Html.ActionLink("Güncelle","Guncelle",new {id=kisi.Id }) |
+                    @Html.ActionLink("Detay","Detay",new {id=kisi.Id })
+                </td>
             </tr>  
         }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
+using PhoneBook2.Models.KisiModel;
 
 namespace PhoneBook2.Controllers
 {
@@ -44,6 +45,7 @@ namespace PhoneBook2.Controllers
 
             return RedirectToAction("Index");
         }
+        [HttpGet]
         public ActionResult Guncelle(int id)
         {
             var kisi = db.Kisiler.Find(id);
@@ -52,8 +54,37 @@ namespace PhoneBook2.Controllers
                 TempData["BasarisizMesaj"] = "Güncellemek İstediğiniz Kayıt Bulunamadı!";
                 return RedirectToAction("Index");
             }
-            return View(kisi);
+            var model = new KisiGuncelleViewModel { Kisi=kisi};
 
+            return View(model);
+        }
+        public ActionResult Guncelle(Kisi kisi)
+        {
+            var Eskikisi = db.Kisiler.Find(kisi.Id);
+            if (Eskikisi==null)
+            {
+                TempData["BasarisizMesaj"] = "Güncellemek İstediğiniz Kayıt Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            Eskikisi.Ad = kisi.Ad;
+            Eskikisi.Soyad = kisi.Soyad;
+
+            db.SaveChanges();
+            TempData["BasariliMesaj"] = "Kişi Bilgileri Başarılı Bir Şekilde Güncellendi.";
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult Detay(int id)
+        {
+            var kisi = db.Kisiler.Find(id);
+            if (kisi==null)
+            {
+                TempData["BasarisizMesaj"] = "Kişi Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            var model = new KisiDetayViewModel {Kisi=kisi };
+
+            return View(model);
         }
     }
 }
