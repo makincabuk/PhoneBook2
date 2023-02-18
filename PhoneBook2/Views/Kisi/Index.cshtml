@@ -19,7 +19,8 @@
                 <td>@kisi.Ad</td>
                 <td>@kisi.Soyad</td>
                 <td>@Html.ActionLink("Güncelle","Guncelle",new {id=kisi.Id }) |
-                    @Html.ActionLink("Detay","Detay",new {id=kisi.Id })
+                    @Html.ActionLink("Detay","Detay",new {id=kisi.Id }) |
+                    @Html.ActionLink("Sil","Sil", new { id = kisi.Id }, new {onclick="return confirm('Kaydı Silmek İstediğinizden Emin Misiniz?');" })
                 </td>
             </tr>  
         }

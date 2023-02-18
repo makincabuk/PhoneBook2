@@ -86,5 +86,18 @@ namespace PhoneBook2.Controllers
 
             return View(model);
         }
+        public ActionResult Sil(int id)
+        {
+            var kisi = db.Kisiler.Find(id);
+            if (kisi==null)
+            {
+                TempData["BasarisizMesaj"] = "Kişi Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            db.Kisiler.Remove(kisi);
+            db.SaveChanges();
+            TempData["BasariliMesaj"] = "Kişi Başarılı Bir Şekilde Silindi";
+            return RedirectToAction("Index");
+        }
     }
 }
