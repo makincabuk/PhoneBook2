@@ -182,6 +182,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Kisi\Ekle.cshtml" />
     <Content Include="Views\Kisi\Index.cshtml" />
+    <Content Include="Views\Kisi\Guncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

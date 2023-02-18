@@ -1,4 +1,5 @@
-﻿
+﻿@model PhoneBook2.Models.Entities.Kisi
+
 @{
     ViewBag.Title = "Ekle";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,16 +9,16 @@
 
 <form class="form-horizontal" action="/Kisi/Ekle" method="post">
     <div class="form-group">
-        @Html.Label("Ad")
-        @Html.TextBox("Ad", null, new { @class = "form-control" })
+        @Html.LabelFor(x=>x.Ad)
+        @Html.TextBoxFor(x => x.Ad, null, new {@class="form-control"})
     </div>
     <div class="form-group">
-        @Html.Label("Soyad")
-        @Html.TextBox("Soyad", null, new { @class = "form-control" })
+        @Html.LabelFor(x => x.Soyad)
+        @Html.TextBoxFor(x => x.Soyad, null, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.Label("Firma")
-        @Html.TextBox("Firma", null, new { @class = "form-control" })
+        @Html.LabelFor(x => x.Firma)
+        @Html.TextBoxFor(x => x.Firma, null, new { @class = "form-control" })
     </div>
     <input type="submit" class="btn btn-primary" value="Kaydet" />
 

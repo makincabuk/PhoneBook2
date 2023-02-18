@@ -35,14 +35,25 @@ namespace PhoneBook2.Controllers
 
                 db.Kisiler.Add(xkisi);
                 db.SaveChanges();
-                TempData["BasariliMesaj"] ="Yeni Kişi Rehbere Başarılı Bir Şekilde Eklendi.";
+                TempData["BasariliMesaj"] = "Yeni Kişi Rehbere Başarılı Bir Şekilde Eklendi.";
             }
             catch (Exception)
             {
-                TempData["BasarisizMesaj"] ="Yeni Kişi Rehbere Eklenemedi!";
+                TempData["BasarisizMesaj"] = "Yeni Kişi Rehbere Eklenemedi!";
             }
-            
+
             return RedirectToAction("Index");
+        }
+        public ActionResult Guncelle(int id)
+        {
+            var kisi = db.Kisiler.Find(id);
+            if (kisi == null)
+            {
+                TempData["BasarisizMesaj"] = "Güncellemek İstediğiniz Kayıt Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            return View(kisi);
+
         }
     }
 }

@@ -12,6 +12,7 @@
         <th>Ad</th>
         <th>Soyad</th>
         <th>Firma</th>
+        <th>İşlemler</th>
     </tr>
         @foreach (var kisi in Model)
         {
@@ -19,7 +20,7 @@
                 <td>@kisi.Ad</td>
                 <td>@kisi.Soyad</td>
                 <td>@kisi.Firma</td>
-
+                <td><a href="/Kisi/Guncelle/@kisi.Id">Güncelle</a></td>
             </tr>  
         }
 
