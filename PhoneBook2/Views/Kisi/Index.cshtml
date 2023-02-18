@@ -1,0 +1,26 @@
+﻿@model List<PhoneBook2.Models.Entities.Kisi>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Firma</th>
+    </tr>
+        @foreach (var kisi in Model)
+        {
+            <tr>
+                <td>@kisi.Ad</td>
+                <td>@kisi.Soyad</td>
+                <td>@kisi.Firma</td>
+
+            </tr>  
+        }
+
+</table>

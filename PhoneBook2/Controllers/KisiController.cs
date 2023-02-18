@@ -16,7 +16,9 @@ namespace PhoneBook2.Controllers
         // GET: Kisi
         public ActionResult Index()
         {
-            return View();
+
+            var kisiler = db.Kisiler.ToList();
+            return View(kisiler);
         }
         [HttpGet]
         public ActionResult Ekle()
@@ -26,11 +28,20 @@ namespace PhoneBook2.Controllers
         [HttpPost]
         public ActionResult Ekle(Kisi xkisi)
         {
-            Guid xUuid = Guid.NewGuid();
-            xkisi.UUID = xUuid.ToString();
+            try
+            {
+                Guid xUuid = Guid.NewGuid();
+                xkisi.UUID = xUuid.ToString();
 
-            db.Kisiler.Add(xkisi);
-            db.SaveChanges();
+                db.Kisiler.Add(xkisi);
+                db.SaveChanges();
+                TempData["BasariliMesaj"] ="Yeni Kişi Rehbere Başarılı Bir Şekilde Eklendi.";
+            }
+            catch (Exception)
+            {
+                TempData["BasarisizMesaj"] ="Yeni Kişi Rehbere Eklenemedi!";
+            }
+            
             return RedirectToAction("Index");
         }
     }

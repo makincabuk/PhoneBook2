@@ -28,6 +28,17 @@
         </div>
     </div>
     <div class="container body-content">
+
+        @if (TempData["BasariliMesaj"] != null)
+        {
+            <div class="alert alert-success"> @TempData["BasariliMesaj"]</div>
+
+        }
+        @if (TempData["BasarisizMesaj"] != null)
+        {
+            <div class="alert alert-danger"> @TempData["BasarisizMesaj"]</div>
+
+        }
         @RenderBody()
         <hr />
         <footer>
