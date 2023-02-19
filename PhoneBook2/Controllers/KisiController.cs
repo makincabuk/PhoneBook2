@@ -105,14 +105,14 @@ namespace PhoneBook2.Controllers
         {
             var kisi = db.Kisiler.Find(id);
             var telefon = db.Telefonlar.ToList();
-            
-           // var konum = db.Konumlar.Find(id);
+            var eposta = db.Epostalar.ToList();
+            var konum = db.Konumlar.ToList();
             if (kisi==null/*||telefon==null||eposta==null||konum==null*/)
             {
                 TempData["BasarisizMesaj"] = "İletişim Bilgisi Eklemek İstediğiniz Kayıt Bulunamadı!";
                 return RedirectToAction("Index");
             }
-            var model = new IletisimEkleViewModel { Kisi = kisi,TelefonL=telefon/*,Eposta=eposta,Konum=konum */};
+            var model = new IletisimEkleViewModel { Kisi = kisi,TelefonL=telefon,EpostaL=eposta,KonumL=konum };
             return View(model);
         }
 
@@ -132,6 +132,42 @@ namespace PhoneBook2.Controllers
                 TempData["BasarisizMesaj"] = "Telefon Numarası Eklenemedi!";
             }
             return RedirectToAction("IletisimEkle/"+x.Kisi.Id);
+        }
+
+        [HttpPost]
+        public ActionResult EpostaEkle(IletisimEkleViewModel x)
+        {
+            try
+            {
+                x.Eposta.Uid = x.Kisi.Id;
+                x.Eposta.UUID = x.Kisi.UUID;
+                db.Epostalar.Add(x.Eposta);
+                db.SaveChanges();
+                TempData["BasariliMesaj"] = "Eposta Adresi Baraşılı Bir Şekilde Eklendi.";
+            }
+            catch (Exception)
+            {
+                TempData["BasarisizMesaj"] = "Eposta Adresi Eklenemedi!";
+            }
+            return RedirectToAction("IletisimEkle/" + x.Kisi.Id);
+        }
+
+        [HttpPost]
+        public ActionResult KonumEkle(IletisimEkleViewModel x)
+        {
+            try
+            {
+                x.Konum.Uid = x.Kisi.Id;
+                x.Konum.UUID = x.Kisi.UUID;
+                db.Konumlar.Add(x.Konum);
+                db.SaveChanges();
+                TempData["BasariliMesaj"] = "Konum Adresi Baraşılı Bir Şekilde Eklendi.";
+            }
+            catch (Exception)
+            {
+                TempData["BasarisizMesaj"] = "Konum Adresi Eklenemedi!";
+            }
+            return RedirectToAction("IletisimEkle/" + x.Kisi.Id);
         }
     }
 }

@@ -10,7 +10,7 @@
 <hr />
 <table class="table">
     <tr>
-        <th>Telefon Numarası Etiket</th>
+        <th>Telefon Numarası Etiketi</th>
         <th>Telefon Numarası</th>
     </tr>
     @foreach (var Telefon in Model.TelefonL)
@@ -43,9 +43,79 @@
             @Html.HiddenFor(x => x.Kisi.UUID)
             <td></td>
             <td> <input type="submit" class="btn btn-primary" value="Telefon Numarası Kaydet" /></td>
-    </form>
+        </form>
+    </tr>
+
+    <tr>
+        <th>Eposta Etiketi</th>
+        <th>Eposta Adresi</th>
+    </tr>
+    @foreach (var Eposta in Model.EpostaL)
+    {
+        <tr>
+            @if (Eposta.Uid == Model.Kisi.Id)
+            {
+                <td>
+                    @Eposta.Etiket
+                </td>
+                <td>
+                    @Eposta.posta
+                </td>
+            }
         </tr>
-
-
-
+    }
+    <tr>
+        <form class="form-horizontal" action="/Kisi/EpostaEkle" method="post">
+            <div class="form-group">
+                <td>
+                    @Html.TextBoxFor(x => x.Eposta.Etiket, null, new { @class = "form-control" })
+                </td>
+            </div>
+            <div class="form-group">
+                <td>
+                    @Html.TextBoxFor(x => x.Eposta.posta, null, new { @class = "form-control" })
+                </td>
+            </div>
+            @Html.HiddenFor(x => x.Kisi.Id)
+            @Html.HiddenFor(x => x.Kisi.UUID)
+            <td></td>
+            <td> <input type="submit" class="btn btn-primary" value="Eposta Kaydet" /></td>
+        </form>
+    </tr>
+    <tr>
+        <th>Konum Etiketi</th>
+        <th>Konum Adresi</th>
+    </tr>
+    @foreach (var Konum in Model.KonumL)
+    {
+        <tr>
+            @if (Konum.Uid == Model.Kisi.Id)
+            {
+                <td>
+                    @Konum.Etiket
+                </td>
+                <td>
+                    @Konum.konum
+                </td>
+            }
+        </tr>
+    }
+    <tr>
+        <form class="form-horizontal" action="/Kisi/KonumEkle" method="post">
+            <div class="form-group">
+                <td>
+                    @Html.TextBoxFor(x => x.Konum.Etiket, null, new { @class = "form-control" })
+                </td>
+            </div>
+            <div class="form-group">
+                <td>
+                    @Html.TextBoxFor(x => x.Konum.konum, null, new { @class = "form-control" })
+                </td>
+            </div>
+            @Html.HiddenFor(x => x.Kisi.Id)
+            @Html.HiddenFor(x => x.Kisi.UUID)
+            <td></td>
+            <td> <input type="submit" class="btn btn-primary" value="Konum Kaydet" /></td>
+        </form>
+    </tr>
 </table>
