@@ -140,12 +140,17 @@
     <Compile Include="Migrations\202302181516216_VeritabaniGuncelle.designer.cs">
       <DependentUpon>202302181516216_VeritabaniGuncelle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302191236166_VeritabaniGuncelle2.cs" />
+    <Compile Include="Migrations\202302191236166_VeritabaniGuncelle2.designer.cs">
+      <DependentUpon>202302191236166_VeritabaniGuncelle2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\PhoneContext.cs" />
     <Compile Include="Models\Entities\Eposta.cs" />
     <Compile Include="Models\Entities\Kisi.cs" />
     <Compile Include="Models\Entities\Konum.cs" />
     <Compile Include="Models\Entities\Telefon.cs" />
+    <Compile Include="Models\IletisimModel\IletisimEkleViewModel.cs" />
     <Compile Include="Models\KisiModel\KisiDetayViewModel.cs" />
     <Compile Include="Models\KisiModel\KisiGuncelleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -190,6 +195,7 @@
     <Content Include="Views\Kisi\Index.cshtml" />
     <Content Include="Views\Kisi\Guncelle.cshtml" />
     <Content Include="Views\Kisi\Detay.cshtml" />
+    <Content Include="Views\Kisi\IletisimEkle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302181516216_VeritabaniGuncelle.resx">
       <DependentUpon>202302181516216_VeritabaniGuncelle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302191236166_VeritabaniGuncelle2.resx">
+      <DependentUpon>202302191236166_VeritabaniGuncelle2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

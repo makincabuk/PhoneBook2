@@ -6,7 +6,10 @@
 
 <h2>Index</h2>
 
+@Html.ActionLink("Yeni Kişi","Ekle",null,new {@class="btn btn-primary"})
 
+<br />
+<br />
 <table class="table">
     <tr>
         <th>Ad</th>
@@ -20,7 +23,8 @@
                 <td>@kisi.Soyad</td>
                 <td>@Html.ActionLink("Güncelle","Guncelle",new {id=kisi.Id }) |
                     @Html.ActionLink("Detay","Detay",new {id=kisi.Id }) |
-                    @Html.ActionLink("Sil","Sil", new { id = kisi.Id }, new {onclick="return confirm('Kaydı Silmek İstediğinizden Emin Misiniz?');" })
+                    @Html.ActionLink("Sil","Sil", new { id = kisi.Id }, new {onclick="return confirm('Kaydı Silmek İstediğinizden Emin Misiniz?');" }) |
+                    @Html.ActionLink("İletişim Bilgisi Ekle", "IletisimEkle", new {id=kisi.Id})
                 </td>
             </tr>  
         }

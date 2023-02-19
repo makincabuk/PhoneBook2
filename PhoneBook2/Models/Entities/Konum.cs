@@ -11,5 +11,7 @@ namespace PhoneBook2.Models.Entities
         public int Uid { get; set; }
         public string UUID { get; set; }
         public string konum { get; set; }
+
+        public string Etiket { get; set; }
     }
 }

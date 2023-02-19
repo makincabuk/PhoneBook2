@@ -16,7 +16,7 @@ namespace PhoneBook2
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Kisi", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

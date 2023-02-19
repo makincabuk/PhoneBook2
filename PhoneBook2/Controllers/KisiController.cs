@@ -99,5 +99,9 @@ namespace PhoneBook2.Controllers
             TempData["BasariliMesaj"] = "Kişi Başarılı Bir Şekilde Silindi";
             return RedirectToAction("Index");
         }
+        public ActionResult IletisimEkle(int id)
+        {
+            return RedirectToAction("Index");
+        }
     }
 }
