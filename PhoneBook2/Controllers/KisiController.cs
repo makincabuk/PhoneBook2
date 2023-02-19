@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
 using PhoneBook2.Models.KisiModel;
+using PhoneBook2.Models.IletisimModel;
 
 namespace PhoneBook2.Controllers
 {
@@ -99,9 +100,38 @@ namespace PhoneBook2.Controllers
             TempData["BasariliMesaj"] = "Kişi Başarılı Bir Şekilde Silindi";
             return RedirectToAction("Index");
         }
+        [HttpGet]
         public ActionResult IletisimEkle(int id)
         {
-            return RedirectToAction("Index");
+            var kisi = db.Kisiler.Find(id);
+            var telefon = db.Telefonlar.ToList();
+            
+           // var konum = db.Konumlar.Find(id);
+            if (kisi==null/*||telefon==null||eposta==null||konum==null*/)
+            {
+                TempData["BasarisizMesaj"] = "İletişim Bilgisi Eklemek İstediğiniz Kayıt Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            var model = new IletisimEkleViewModel { Kisi = kisi,TelefonL=telefon/*,Eposta=eposta,Konum=konum */};
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult TelefonEkle(IletisimEkleViewModel x)
+        {
+            try
+            {
+                x.Telefon.Uid = x.Kisi.Id;
+                x.Telefon.UUID = x.Kisi.UUID;
+                db.Telefonlar.Add(x.Telefon);
+                db.SaveChanges();
+                TempData["BasariliMesaj"] = "Telefon Numarası Baraşılı Bir Şekilde Eklendi.";
+            }
+            catch (Exception)
+            {
+                TempData["BasarisizMesaj"] = "Telefon Numarası Eklenemedi!";
+            }
+            return RedirectToAction("IletisimEkle/"+x.Kisi.Id);
         }
     }
 }
