@@ -15,17 +15,21 @@
     </tr>
     @foreach (var Telefon in Model.TelefonL)
     {
-        <tr>
-            @if (Telefon.Uid == Model.Kisi.Id)
-            {
-                <td>
-                    @Telefon.Etiket
-                </td>
-                <td>
-                    @Telefon.telefon
-                </td>
-            }
-        </tr>
+<tr>
+    @if (Telefon.Uid == Model.Kisi.Id)
+    {
+        <td>
+            @Telefon.Etiket
+        </td>
+        <td>
+            @Telefon.telefon
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "Guncelle", new { id = Model.Kisi.Id }) |
+            @Html.ActionLink("Sil", "Guncelle", new { id = Model.Kisi.Id })
+        </td>
+        }
+</tr>
     }
     <tr>
         <form class="form-horizontal" action="/Kisi/TelefonEkle" method="post">
