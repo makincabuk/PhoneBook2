@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br />
-<h2>IletisimEkle</h2>
+<h2>İletişim Bilgisi Ekle</h2>
 <br />
 @Model.Kisi.Ad @Model.Kisi.Soyad İletişim Bilgileri
 <hr />
@@ -25,8 +25,8 @@
             @Telefon.telefon
         </td>
         <td>
-            @Html.ActionLink("Güncelle", "Guncelle", new { id = Model.Kisi.Id }) |
-            @Html.ActionLink("Sil", "Guncelle", new { id = Model.Kisi.Id })
+            @Html.ActionLink("Güncelle", "BilgiGuncelleTelefon", new { id = Telefon.Id }) |
+            @Html.ActionLink("Sil", "SilTelefon", new { id = Telefon.Id }, new { onclick = "return confirm('Kaydı Silmek İstediğinizden Emin Misiniz?');" })
         </td>
         }
 </tr>
@@ -56,17 +56,21 @@
     </tr>
     @foreach (var Eposta in Model.EpostaL)
     {
-        <tr>
-            @if (Eposta.Uid == Model.Kisi.Id)
-            {
-                <td>
-                    @Eposta.Etiket
-                </td>
-                <td>
-                    @Eposta.posta
-                </td>
-            }
-        </tr>
+<tr>
+    @if (Eposta.Uid == Model.Kisi.Id)
+    {
+        <td>
+            @Eposta.Etiket
+        </td>
+        <td>
+            @Eposta.posta
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "BilgiGuncelleEposta", new { id = Eposta.Id }) |
+            @Html.ActionLink("Sil", "SilEposta", new { id = Eposta.Id }, new { onclick = "return confirm('Kaydı Silmek İstediğinizden Emin Misiniz?');" })
+        </td>
+    }
+</tr>
     }
     <tr>
         <form class="form-horizontal" action="/Kisi/EpostaEkle" method="post">
@@ -92,17 +96,21 @@
     </tr>
     @foreach (var Konum in Model.KonumL)
     {
-        <tr>
-            @if (Konum.Uid == Model.Kisi.Id)
-            {
-                <td>
-                    @Konum.Etiket
-                </td>
-                <td>
-                    @Konum.konum
-                </td>
-            }
-        </tr>
+<tr>
+    @if (Konum.Uid == Model.Kisi.Id)
+    {
+        <td>
+            @Konum.Etiket
+        </td>
+        <td>
+            @Konum.konum
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "BilgiGuncelleKonum", new { id = Konum.Id }) |
+            @Html.ActionLink("Sil", "SilKonum", new { id = Konum.Id }, new { onclick = "return confirm('Kaydı Silmek İstediğinizden Emin Misiniz?');" })
+        </td>
+    }
+</tr>
     }
     <tr>
         <form class="form-horizontal" action="/Kisi/KonumEkle" method="post">

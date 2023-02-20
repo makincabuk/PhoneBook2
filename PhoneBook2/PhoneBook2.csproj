@@ -196,6 +196,9 @@
     <Content Include="Views\Kisi\Guncelle.cshtml" />
     <Content Include="Views\Kisi\Detay.cshtml" />
     <Content Include="Views\Kisi\IletisimEkle.cshtml" />
+    <Content Include="Views\Kisi\BilgiGuncelleTelefon.cshtml" />
+    <Content Include="Views\Kisi\BilgiGuncelleEposta.cshtml" />
+    <Content Include="Views\Kisi\BilgiGuncelleKonum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

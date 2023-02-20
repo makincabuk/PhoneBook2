@@ -1,0 +1,21 @@
+﻿@model PhoneBook2.Models.IletisimModel.IletisimEkleViewModel
+@{
+    ViewBag.Title = "BilgiGuncelleEposta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>E-posta Bilgisi Güncelle</h2>
+
+@using (Html.BeginForm("BilgiGuncelleEposta", "Kisi", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(x => x.Eposta.Id)
+    <div class="form-group">
+        @Html.LabelFor(x => x.Eposta.Etiket)
+        @Html.TextBoxFor(x => x.Eposta.Etiket, null, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Eposta.posta)
+        @Html.TextBoxFor(x => x.Eposta.posta, null, new { @class = "form-control" })
+    </div>
+    <input type="submit" class="btn btn-primary" value="Güncelle" />
+}

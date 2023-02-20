@@ -125,7 +125,7 @@ namespace PhoneBook2.Controllers
                 x.Telefon.UUID = x.Kisi.UUID;
                 db.Telefonlar.Add(x.Telefon);
                 db.SaveChanges();
-                TempData["BasariliMesaj"] = "Telefon Numarası Baraşılı Bir Şekilde Eklendi.";
+                TempData["BasariliMesaj"] = "Telefon Numarası Başarılı Bir Şekilde Eklendi.";
             }
             catch (Exception)
             {
@@ -168,6 +168,130 @@ namespace PhoneBook2.Controllers
                 TempData["BasarisizMesaj"] = "Konum Adresi Eklenemedi!";
             }
             return RedirectToAction("IletisimEkle/" + x.Kisi.Id);
+        }
+        [HttpGet]
+        public ActionResult BilgiGuncelleTelefon(int id)
+        {
+            var telefon = db.Telefonlar.Find(id);
+            if (telefon == null)
+            {
+                TempData["BasarisizMesaj"] = "Güncellemek İstediğiniz Kayıt Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            var model = new IletisimEkleViewModel { Telefon = telefon };
+
+            return View(model);
+        }
+        public ActionResult BilgiGuncelleTelefon(IletisimEkleViewModel xmodel)
+        {
+            var Eskitelefon = db.Telefonlar.Find(xmodel.Telefon.Id);
+            if (Eskitelefon == null)
+            {
+                TempData["BasarisizMesaj"] = "Güncellemek İstediğiniz Kayıt Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            Eskitelefon.Etiket = xmodel.Telefon.Etiket;
+            Eskitelefon.telefon = xmodel.Telefon.telefon;
+
+            db.SaveChanges();
+            TempData["BasariliMesaj"] = "Telefon Bilgileri Başarılı Bir Şekilde Güncellendi.";
+            return RedirectToAction("Index");
+        }
+        public ActionResult SilTelefon(int id)
+        {
+            var telefon = db.Telefonlar.Find(id);
+            if (telefon == null)
+            {
+                TempData["BasarisizMesaj"] = "Kişi Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            db.Telefonlar.Remove(telefon);
+            db.SaveChanges();
+            TempData["BasariliMesaj"] = "Telefon numarası Bir Şekilde Silindi";
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult BilgiGuncelleEposta(int id)
+        {
+            var eposta = db.Epostalar.Find(id);
+            if (eposta == null)
+            {
+                TempData["BasarisizMesaj"] = "Güncellemek İstediğiniz Kayıt Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            var model = new IletisimEkleViewModel { Eposta = eposta };
+
+            return View(model);
+        }
+        public ActionResult BilgiGuncelleEposta(IletisimEkleViewModel xmodel)
+        {
+            var Eskieposta = db.Epostalar.Find(xmodel.Eposta.Id);
+            if (Eskieposta == null)
+            {
+                TempData["BasarisizMesaj"] = "Güncellemek İstediğiniz Kayıt Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            Eskieposta.Etiket = xmodel.Eposta.Etiket;
+            Eskieposta.posta = xmodel.Eposta.posta;
+
+            db.SaveChanges();
+            TempData["BasariliMesaj"] = "Eposta Bilgileri Başarılı Bir Şekilde Güncellendi.";
+            return RedirectToAction("Index");
+        }
+        public ActionResult SilEposta(int id)
+        {
+            var eposta = db.Epostalar.Find(id);
+            if (eposta == null)
+            {
+                TempData["BasarisizMesaj"] = "Kişi Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            db.Epostalar.Remove(eposta);
+            db.SaveChanges();
+            TempData["BasariliMesaj"] = "Telefon numarası Bir Şekilde Silindi";
+            return RedirectToAction("Index");
+        }
+
+         [HttpGet]
+        public ActionResult BilgiGuncelleKonum(int id)
+        {
+            var konum = db.Konumlar.Find(id);
+            if (konum == null)
+            {
+                TempData["BasarisizMesaj"] = "Güncellemek İstediğiniz Kayıt Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            var model = new IletisimEkleViewModel { Konum = konum };
+
+            return View(model);
+        }
+        public ActionResult BilgiGuncelleKonum(IletisimEkleViewModel xmodel)
+        {
+            var EskiKonum = db.Konumlar.Find(xmodel.Konum.Id);
+            if (EskiKonum == null)
+            {
+                TempData["BasarisizMesaj"] = "Güncellemek İstediğiniz Kayıt Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            EskiKonum.Etiket = xmodel.Konum.Etiket;
+            EskiKonum.konum = xmodel.Konum.konum;
+
+            db.SaveChanges();
+            TempData["BasariliMesaj"] = "Eposta Bilgileri Başarılı Bir Şekilde Güncellendi.";
+            return RedirectToAction("Index");
+        }
+        public ActionResult SilKonum(int id)
+        {
+            var konum = db.Konumlar.Find(id);
+            if (konum == null)
+            {
+                TempData["BasarisizMesaj"] = "Kişi Bulunamadı!";
+                return RedirectToAction("Index");
+            }
+            db.Konumlar.Remove(konum);
+            db.SaveChanges();
+            TempData["BasariliMesaj"] = "Telefon numarası Bir Şekilde Silindi";
+            return RedirectToAction("Index");
         }
     }
 }
